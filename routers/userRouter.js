@@ -12,8 +12,8 @@ const limiter = rateLimit({
 
 
 
-route.post("/register", limiter, register);
-route.post("/login", login);
+route.post("/register", authorize("superAdmin"), limiter, register);
+route.post("/login", limiter, login);
 route.get("/", authorize("admin", "superAdmin"), getProfile )
 route.get("/me", authenticate, getMe);
 route.post("/logout", logout);
